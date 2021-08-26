@@ -4,6 +4,9 @@ default:
 clean:
 	cargo clean
 
+doc:
+	cargo doc --no-deps --workspace --all-features
+
 test:
 	cargo test --all-features --no-fail-fast
 

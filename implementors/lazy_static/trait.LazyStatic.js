@@ -1,0 +1,4 @@
+(function() {var implementors = {};
+implementors["mainframe"] = [{"text":"impl <a class=\"trait\" href=\"https://docs.rs/lazy_static/1.4.0/lazy_static/trait.LazyStatic.html\" title=\"trait lazy_static::LazyStatic\">LazyStatic</a> for <a class=\"struct\" href=\"mainframe/struct.SETTINGS.html\" title=\"struct mainframe::SETTINGS\">SETTINGS</a>","synthetic":false,"types":["mainframe::SETTINGS"]}];
+implementors["migrate"] = [{"text":"impl <a class=\"trait\" href=\"https://docs.rs/lazy_static/1.4.0/lazy_static/trait.LazyStatic.html\" title=\"trait lazy_static::LazyStatic\">LazyStatic</a> for <a class=\"struct\" href=\"migrate/struct.SETTINGS.html\" title=\"struct migrate::SETTINGS\">SETTINGS</a>","synthetic":false,"types":["migrate::SETTINGS"]}];
+if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

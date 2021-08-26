@@ -1,0 +1,4 @@
+(function() {var implementors = {};
+implementors["mainframe"] = [{"text":"impl <a class=\"trait\" href=\"https://doc.rust-lang.org/1.54.0/core/ops/deref/trait.Deref.html\" title=\"trait core::ops::deref::Deref\">Deref</a> for <a class=\"struct\" href=\"mainframe/struct.SETTINGS.html\" title=\"struct mainframe::SETTINGS\">SETTINGS</a>","synthetic":false,"types":["mainframe::SETTINGS"]}];
+implementors["migrate"] = [{"text":"impl <a class=\"trait\" href=\"https://doc.rust-lang.org/1.54.0/core/ops/deref/trait.Deref.html\" title=\"trait core::ops::deref::Deref\">Deref</a> for <a class=\"struct\" href=\"migrate/struct.SETTINGS.html\" title=\"struct migrate::SETTINGS\">SETTINGS</a>","synthetic":false,"types":["migrate::SETTINGS"]}];
+if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()

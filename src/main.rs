@@ -50,7 +50,6 @@ async fn main() {
     );
 
     let data = Data::new().await;
-    sqlx::migrate!("./migrations/").run(&data.db).await.unwrap();
 
     let port = port::Port::new(&data).await;
     println!("{:?}", port);

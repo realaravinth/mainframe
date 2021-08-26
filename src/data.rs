@@ -14,7 +14,8 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-use sqlx::sqlite::SqlitePool;
+use sqlx::migrate::MigrateDatabase;
+use sqlx::sqlite::{Sqlite, SqlitePool};
 
 pub struct Data {
     pub db: SqlitePool,
@@ -22,10 +23,20 @@ pub struct Data {
 
 impl Data {
     pub async fn new() -> Self {
-        let db = SqlitePool::connect(&crate::SETTINGS.database.url)
-            .await
-            .unwrap();
-
+        let db = Self::prep_db().await;
         Data { db }
+    }
+
+    async fn prep_db() -> SqlitePool {
+        let db_url = &crate::SETTINGS.database.url;
+        if !Sqlite::database_exists(db_url).await.unwrap() {
+            Sqlite::create_database(db_url).await.unwrap();
+        }
+        let db = SqlitePool::connect(db_url)
+            .await
+            .expect("Unable to form database pool");
+
+        sqlx::migrate!("./migrations/").run(&db).await.unwrap();
+        db
     }
 }

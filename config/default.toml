@@ -18,5 +18,5 @@ proxy_has_tls = false
 #url_prefix = ""
 
 [database]
-url = "db/sqlite:mainframe.db"
+url = "sqlite:db/mainframe.db"
 pool = 4

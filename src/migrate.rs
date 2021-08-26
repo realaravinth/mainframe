@@ -14,10 +14,9 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-use std::env;
-
 use lazy_static::lazy_static;
-use sqlx::sqlite::SqlitePool;
+use sqlx::migrate::MigrateDatabase;
+use sqlx::sqlite::{Sqlite, SqlitePool};
 
 mod settings;
 
@@ -32,11 +31,16 @@ lazy_static! {
 #[cfg(not(tarpaulin_include))]
 #[actix_rt::main]
 async fn main() {
-    let db = SqlitePool::connect(&*SETTINGS.database.url)
+    let db_url = &SETTINGS.database.url;
+    if !Sqlite::database_exists(db_url).await.unwrap() {
+        Sqlite::create_database(db_url).await.unwrap();
+    }
+    let db = SqlitePool::connect(db_url)
         .await
         .expect("Unable to form database pool");
 
     sqlx::migrate!("./migrations/").run(&db).await.unwrap();
+    build();
 }
 
 fn build() {

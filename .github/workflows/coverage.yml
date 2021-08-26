@@ -46,6 +46,7 @@ jobs:
         with:
           version: '0.15.0'
           args: '-t 1200'
+        env:
           # GIT_HASH is dummy value. I guess build.rs is skipped in tarpaulin
           # execution so this value is required for preventing meta tests from
           # panicking

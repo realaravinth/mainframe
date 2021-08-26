@@ -48,6 +48,8 @@ jobs:
 
       - name: run tests
         run: make test
+        env:
+          DATABASE_URL: 'sqlite:db/mainframe.db'
 
       - name: generate documentation
         if: matrix.version == 'stable' && (github.repository == 'shuttlecraft/mainframe')

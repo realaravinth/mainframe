@@ -1,8 +1,11 @@
 default:
-	cargo run
+	cargo build
 
 clean:
 	cargo clean
+
+test:
+	cargo test --all-features --no-fail-fast
 
 migrate:
 	@-rm mainframe.db

@@ -18,7 +18,7 @@ use std::env;
 use std::path::Path;
 
 use config::{Config, ConfigError, Environment, File};
-use log::{debug, warn};
+use log::warn;
 use serde::Deserialize;
 use url::Url;
 

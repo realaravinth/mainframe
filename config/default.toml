@@ -1,0 +1,22 @@
+source_code = "https://github.com/realaravinth/mainframe"
+
+[server]
+# Please set a unique value, your mCaptcha instance's security depends on this being 
+# unique
+cookie_secret = "425576a3431d95f90a93a2f68b5c771d4493055546c64ad8206dfb91496c65fe2a352e713596733e7e28adebb0"
+# The port at which you want authentication to listen to
+# takes a number, choose from 1000-10000 if you dont know what you are doing
+port = 7000
+#IP address. Enter 0.0.0.0 to listen on all availale addresses
+ip= "0.0.0.0" 
+# enter your hostname, eg: example.com
+domain = "localhost"
+# Set true if you have setup TLS with a reverse proxy like Nginx.
+# Does HTTPS redirect and sends additional headers that can only be used if
+# HTTPS available to improve security
+proxy_has_tls = false
+#url_prefix = ""
+
+[database]
+url = "sqlite:mainframe.db"
+pool = 4

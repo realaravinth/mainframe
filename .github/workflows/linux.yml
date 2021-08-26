@@ -40,24 +40,17 @@ jobs:
 
       - name: Run migrations
         run: make migrate
-        env:
-          DATABASE_URL: "sqlite:mainframe.db"
 
       - name: build
         run: make
-        env:
-          DATABASE_URL: "sqlite:mainframe.db"
 
       - name: run tests
         run: make test
-        env:
-          DATABASE_URL: postgres://postgres:password@localhost:5432/postgres
           
       - name: generate documentation
         if: matrix.version == 'stable' && (github.repository == 'shuttlecraft/mainframe')
         run: make doc
         env:
-          DATABASE_URL: "sqlite:mainframe.db"
           GIT_HASH: 8e77345f1597e40c2e266cb4e6dee74888918a61 # dummy value
           COMPILED_DATE: "2021-07-21"
 

@@ -8,7 +8,6 @@ test:
 	cargo test --all-features --no-fail-fast
 
 migrate:
-	@-rm mainframe.db
-	sqlx database create
-	sqlx migrate run
-	@cargo sqlx prepare -- --bin mainframe --all-features
+	@-rm -rf db
+	@-mkdir db
+	@cargo run --bin migrate

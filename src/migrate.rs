@@ -14,18 +14,39 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+use std::env;
+
+use lazy_static::lazy_static;
 use sqlx::sqlite::SqlitePool;
 
-pub struct Data {
-    pub db: SqlitePool,
+mod settings;
+
+pub use settings::Settings;
+
+#[cfg(not(tarpaulin_include))]
+lazy_static! {
+    #[cfg(not(tarpaulin_include))]
+    pub static ref SETTINGS: Settings = Settings::new().unwrap();
 }
 
-impl Data {
-    pub async fn new() -> Self {
-        let db = SqlitePool::connect(&crate::SETTINGS.database.url)
-            .await
-            .unwrap();
+#[cfg(not(tarpaulin_include))]
+#[actix_rt::main]
+async fn main() {
+    let db = SqlitePool::connect(&*SETTINGS.database.url)
+        .await
+        .expect("Unable to form database pool");
 
-        Data { db }
-    }
+    sqlx::migrate!("./migrations/").run(&db).await.unwrap();
+}
+
+fn build() {
+    use std::process::Command;
+
+    // note: add error checking yourself.
+    let output = Command::new("git")
+        .args(&["rev-parse", "HEAD"])
+        .output()
+        .unwrap();
+    let git_hash = String::from_utf8(output.stdout).unwrap();
+    println!("cargo:rustc-env=GIT_HASH={}", git_hash);
 }

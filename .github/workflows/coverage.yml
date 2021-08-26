@@ -52,7 +52,7 @@ jobs:
           version: '0.15.0'
           args: '-t 1200'
         env:
-          DATABASE_URL: postgres://postgres:password@localhost:5432/postgres
+          DATABASE_URL: "sqlite:mainframe.db"
           # GIT_HASH is dummy value. I guess build.rs is skipped in tarpaulin
           # execution so this value is required for preventing meta tests from
           # panicking

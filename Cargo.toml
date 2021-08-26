@@ -9,6 +9,15 @@ documentation = "https://github.com/realaravinth/mainframe"
 license = "AGPLv3 or later version"
 authors = ["realaravinth <realaravinth@batsense.net>"]
 build = "build.rs"
+default-run = "mainframe"
+
+[[bin]]
+name = "mainframe"
+path = "./src/main.rs"
+
+[[bin]]
+name = "migrate"
+path = "./src/migrate.rs"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
